@@ -1,0 +1,60 @@
+.ad--left {
+	height: 975px;
+	overflow: hidden;
+	position: relative;
+	width: 320px;
+}
+
+.ad__link {
+	display: block;
+	height: 975px;
+	overflow: hidden;
+	position: relative;
+	width: 320px;
+}
+
+.ad__link:focus-visible {
+	box-shadow: inset 0 0 0 5px #111;
+	outline: 3px solid #fff;
+	outline-offset: -5px;
+}
+
+.ad__layer {
+	display: block;
+	position: absolute;
+}
+
+.ad__layer--background,
+.ad__layer--logo,
+.ad__layer--box,
+.ad__layer--copy {
+	height: 975px;
+	left: 0;
+	top: 0;
+	width: 320px;
+}
+
+.ad__layer--box {
+	clip-path: inset(744.5px 0 61px);
+	opacity: 0.8;
+}
+
+.ad__layer--copy {
+	mix-blend-mode: screen;
+}
+
+.ad__cta {
+	bottom: 95px;
+	border-radius: 7px;
+	height: 46.5px;
+	left: 73.75px;
+	overflow: hidden;
+	position: absolute;
+	width: 172.5px;
+}
+
+.ad__layer--cta {
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
