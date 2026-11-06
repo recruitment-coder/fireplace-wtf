@@ -11,7 +11,7 @@ Confidentiality: the assets are adapted from real campaigns, with logos and pack
 Variant B: Fireplace Ad
 A desktop "fireplace" skin for a cough and cold campaign: a top banner plus a left and a right skyscraper that frame the publisher's website. No interaction is planned besides the clickout. The goal is that it is beautifully animated.
 
-Files: variant-b-fireplace/
+Files: top/, left/, and right/ at the repository root; preview.html stays at the repository root.
 
 design/layout.png: target layout of all three parts
 assets/top/, assets/left/, assets/right/: background, headline, logo layers for each part (2x)
@@ -20,7 +20,7 @@ Format: three separate creatives that run side by side, built from 2x assets:
 
 Top: 1032x250 CSS px (assets 2064x500)
 Left and Right: 320x975 CSS px (assets 640x1950)
-Build each part as its own HTML file (top.html, left.html, right.html) because in production they are delivered as three separate ads. Add a preview.html that places the three parts (e.g. in iframes) like in design/layout.png, with an empty area in the middle where the website would be.
+Build each part in its own folder as a separate HTML file (top/top.html, left/left.html, right/right.html) because in production they are delivered as three separate ads. Add a root-level preview.html that places the three parts (e.g. in iframes) like in design/layout.png, with an empty area in the middle where the website would be.
 
 Required behaviour
 
