@@ -22,5 +22,7 @@ README.md and DECISIONS.md at the repo root.
 
 ## Git
 - Run `git status` before a new task. If there are uncommitted changes, stop and tell me.
+- For each new task, create and work on a dedicated branch from `main`; never start new work directly on `main`. Use `feat/`, `fix/`, `docs/`, `perf/`, or `chore/` prefixes with a short English description.
+- Do not move work that is already on `main` to a new branch retroactively unless I ask.
 - Never commit or push. Propose a commit message: `type(scope): description` (chore, feat, fix, perf, docs).
 - Never rewrite history. Never add node_modules or large files.
