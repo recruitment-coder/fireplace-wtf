@@ -1,7 +1,7 @@
 # AGENTS.md
 
 ## Project
-Fireplace Ad (variant B): three separate ads (top 1032x250, left 320x975, right 320x975 CSS px) and preview.html showing them side by side. Task description: docs/TASK-B.md.
+Fireplace Ad (variant B): three separate ads (top 1032x250, left 320x975, right 320x975 CSS px) and preview.html showing them side by side. Task description: docs/task.md.
 Talk to me in Polish. Code, comments and commits in English.
 
 ## Stack (nothing else)
