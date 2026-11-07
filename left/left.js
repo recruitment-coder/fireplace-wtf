@@ -44,6 +44,7 @@ const startAnimation = () => {
 	const startTime = performance.now();
 	const intro = gsap.timeline({ onComplete: startIdle });
 
+	// The background image slides in, then the logo, text panel, copy, and button appear in turn.
 	intro.to(background, {
 		x: 0,
 		duration: animationTiming.productSlide,
@@ -77,6 +78,7 @@ const startAnimation = () => {
 	function startIdle() {
 		const idle = gsap.timeline({ repeat: -1, yoyo: true });
 
+		// The button fades slightly, then returns to normal until the animation stops.
 		idle.to(cta, {
 			opacity: 0.94,
 			duration: animationTiming.idleCycle / 4,

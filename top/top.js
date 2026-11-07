@@ -33,6 +33,7 @@ const startAnimation = () => {
   const startTime = performance.now();
   const intro = gsap.timeline({ onComplete: startIdle });
 
+  // The background zooms in slightly, then returns to its original size.
   intro.to(background, {
     scale: 1.02,
     duration: animationTiming.intro - animationTiming.stopEase,
@@ -45,6 +46,7 @@ const startAnimation = () => {
     ease: 'power2.out',
   });
 
+  // The complete headline image fades in near the end of the intro.
   intro.to(headline, {
     opacity: 1,
     duration: animationTiming.headlineReveal,
@@ -54,6 +56,7 @@ const startAnimation = () => {
   function startIdle() {
     const idle = gsap.timeline({ repeat: -1, yoyo: true });
 
+    // The background fades slightly, then returns to normal until the animation stops.
     idle.to(background, {
       opacity: 0.94,
       duration: animationTiming.idleCycle / 4,
