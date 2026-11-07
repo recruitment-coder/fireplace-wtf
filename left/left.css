@@ -34,13 +34,23 @@
 	width: 320px;
 }
 
+.ad__layer--background {
+	transform: translateX(-320px);
+}
+
+.ad__layer--logo {
+	opacity: 0;
+	transform: scale(0.9);
+}
+
 .ad__layer--box {
 	clip-path: inset(744.5px 0 61px);
-	opacity: 0.8;
+	opacity: 0;
 }
 
 .ad__layer--copy {
 	mix-blend-mode: screen;
+	opacity: 0;
 }
 
 .ad__cta {
@@ -48,8 +58,10 @@
 	border-radius: 7px;
 	height: 46.5px;
 	left: 73.75px;
+	opacity: 0;
 	overflow: hidden;
 	position: absolute;
+	transform: translateY(12px);
 	width: 172.5px;
 }
 
@@ -57,4 +69,21 @@
 	height: 100%;
 	position: relative;
 	width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ad__layer--background {
+		transform: none;
+	}
+
+	.ad__layer--logo,
+	.ad__layer--copy,
+	.ad__cta {
+		opacity: 1;
+		transform: none;
+	}
+
+	.ad__layer--box {
+		opacity: 0.8;
+	}
 }
