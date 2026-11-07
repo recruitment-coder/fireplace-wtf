@@ -26,14 +26,11 @@ Each creative can also be opened directly at `/top/top.html`, `/left/left.html`,
 
 ## Next steps
 
-- Compare the three background seams and layer placement against the supplied layout at the intended desktop size.
-- Confirm the desired idle-loop duration and adjust it if needed; the current JavaScript stops the loop after 15 seconds.
 - Replace the top headline asset if an approved corrected version is provided; the current page uses the supplied `assets/top/hl.png` as one image.
 
 ## Known issues and shortcuts
 
 - The preview and ads use fixed pixel dimensions and are intended for desktop; they do not scale to fit a smaller viewport.
-- The idle animation stops after 15 seconds, rather than around 30 seconds.
 - The preview uses a solid `#242424` area as a stand-in for the website.
 - `preview.js` posts to `'*'`; each ad checks that the message came from `window.parent` and that its payload is exactly `start-ad`.
 - The supplied panel and copy images have black areas. The panel is cropped with CSS `clip-path`, and the copy uses `mix-blend-mode: screen`; the source assets are left unchanged.
