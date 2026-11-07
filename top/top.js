@@ -15,8 +15,7 @@ let fallbackTimer;
 adLink.href = clickTag;
 
 const showFinalState = () => {
-  gsap.set(background, { scale: 1.06, x: 0, y: 0, opacity: 1 });
-  gsap.set(headline, { opacity: 1, x: 0, y: 0, scale: 1 });
+  gsap.set(headline, { opacity: 1 });
 };
 
 const startAnimation = () => {
@@ -35,15 +34,13 @@ const startAnimation = () => {
   const intro = gsap.timeline({ onComplete: startIdle });
 
   intro.to(background, {
-    scale: 1.06,
+    scale: 1.02,
     duration: animationTiming.intro,
     ease: 'sine.inOut',
   });
 
   intro.to(headline, {
     opacity: 1,
-    y: 0,
-    scale: 1,
     duration: animationTiming.headlineReveal,
     ease: 'power2.out',
   }, animationTiming.intro - animationTiming.headlineReveal);
@@ -52,8 +49,8 @@ const startAnimation = () => {
     const idle = gsap.timeline({ repeat: -1, yoyo: true });
 
     idle.to(background, {
-      scale: 1.075,
-      x: -2,
+      scale: 1.025,
+      x: 0,
       duration: animationTiming.idleCycle / 2,
       ease: 'sine.inOut',
     });
@@ -63,7 +60,7 @@ const startAnimation = () => {
       () => {
         idle.kill();
         gsap.to(background, {
-          scale: 1.06,
+          scale: 1,
           x: 0,
           duration: animationTiming.stopEase,
           ease: 'power2.out',
