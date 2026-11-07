@@ -17,6 +17,8 @@ const logo = document.querySelector('.ad__layer--logo');
 const box = document.querySelector('.ad__layer--box');
 const copy = document.querySelector('.ad__layer--copy');
 const cta = document.querySelector('.ad__cta');
+let animationStarted = false;
+let fallbackTimer;
 adLink.href = clickTag;
 
 const showFinalState = () => {
@@ -28,6 +30,12 @@ const showFinalState = () => {
 };
 
 const startAnimation = () => {
+	if (animationStarted) {
+		return;
+	}
+
+	animationStarted = true;
+
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		showFinalState();
 		return;
@@ -99,9 +107,34 @@ const startAnimation = () => {
 };
 
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-	showFinalState();
-} else if (document.readyState === 'complete') {
 	startAnimation();
 } else {
-	window.addEventListener('load', startAnimation, { once: true });
+	window.addEventListener('message', (event) => {
+		if (window.parent === window || event.source !== window.parent || event.data !== 'start-ad') {
+			return;
+		}
+
+		window.clearTimeout(fallbackTimer);
+		startAnimation();
+	});
+
+	if (window.parent === window) {
+		if (document.readyState === 'complete') {
+			startAnimation();
+		} else {
+			window.addEventListener('load', startAnimation, { once: true });
+		}
+	} else {
+		const scheduleFallback = () => {
+			if (!animationStarted) {
+				fallbackTimer = window.setTimeout(startAnimation, 5000);
+			}
+		};
+
+		if (document.readyState === 'complete') {
+			scheduleFallback();
+		} else {
+			window.addEventListener('load', scheduleFallback, { once: true });
+		}
+	}
 }
