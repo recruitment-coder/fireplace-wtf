@@ -35,8 +35,14 @@ const startAnimation = () => {
 
   intro.to(background, {
     scale: 1.02,
-    duration: animationTiming.intro,
+    duration: animationTiming.intro - animationTiming.stopEase,
     ease: 'sine.inOut',
+  });
+
+  intro.to(background, {
+    scale: 1,
+    duration: animationTiming.stopEase,
+    ease: 'power2.out',
   });
 
   intro.to(headline, {
@@ -49,9 +55,8 @@ const startAnimation = () => {
     const idle = gsap.timeline({ repeat: -1, yoyo: true });
 
     idle.to(background, {
-      scale: 1.025,
-      x: 0,
-      duration: animationTiming.idleCycle / 2,
+      opacity: 0.94,
+      duration: animationTiming.idleCycle / 4,
       ease: 'sine.inOut',
     });
 
@@ -60,8 +65,7 @@ const startAnimation = () => {
       () => {
         idle.kill();
         gsap.to(background, {
-          scale: 1,
-          x: 0,
+          opacity: 1,
           duration: animationTiming.stopEase,
           ease: 'power2.out',
         });

@@ -23,10 +23,10 @@ adLink.href = clickTag;
 
 const showFinalState = () => {
 	gsap.set(background, { x: 0, y: 0, opacity: 1 });
-	gsap.set(logo, { opacity: 1, x: 0, y: 0, scale: 1 });
+	gsap.set(logo, { opacity: 1 });
 	gsap.set(box, { opacity: 0.8 });
 	gsap.set(copy, { opacity: 1, x: 0, y: 0 });
-	gsap.set(cta, { opacity: 1, x: 0, y: 0, scale: 1 });
+	gsap.set(cta, { opacity: 1 });
 };
 
 const startAnimation = () => {
@@ -52,7 +52,6 @@ const startAnimation = () => {
 
 	intro.to(logo, {
 		opacity: 1,
-		scale: 1,
 		duration: animationTiming.logoReveal,
 		ease: 'power2.out',
 	}, 0.4);
@@ -71,7 +70,6 @@ const startAnimation = () => {
 
 	intro.to(cta, {
 		opacity: 1,
-		y: 0,
 		duration: animationTiming.ctaReveal,
 		ease: 'power2.out',
 	}, animationTiming.intro - animationTiming.ctaReveal);
@@ -79,14 +77,8 @@ const startAnimation = () => {
 	function startIdle() {
 		const idle = gsap.timeline({ repeat: -1, yoyo: true });
 
-		idle.to(background, {
-			scale: 1.025,
-			duration: animationTiming.idleCycle / 2,
-			ease: 'sine.inOut',
-		}, 0);
-
 		idle.to(cta, {
-			scale: 1.025,
+			opacity: 0.94,
 			duration: animationTiming.idleCycle / 4,
 			ease: 'sine.inOut',
 		}, 0);
@@ -95,9 +87,8 @@ const startAnimation = () => {
 			Math.max(0, animationTiming.stopAfter - (performance.now() - startTime) / 1000),
 			() => {
 				idle.kill();
-				gsap.to([background, cta], {
-					x: 0,
-					scale: 1,
+				gsap.to(cta, {
+					opacity: 1,
 					duration: animationTiming.stopEase,
 					ease: 'power2.out',
 				});
