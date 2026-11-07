@@ -40,7 +40,6 @@
 
 .ad__layer--logo {
 	opacity: 0;
-	transform: scale(0.9);
 }
 
 .ad__layer--box {
@@ -61,7 +60,6 @@
 	opacity: 0;
 	overflow: hidden;
 	position: absolute;
-	transform: translateY(12px);
 	width: 172.5px;
 }
 
@@ -77,10 +75,8 @@
 	}
 
 	.ad__layer--logo,
-	.ad__layer--copy,
-	.ad__cta {
+	.ad__layer--copy {
 		opacity: 1;
-		transform: none;
 	}
 
 	.ad__layer--box {
