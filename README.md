@@ -38,4 +38,4 @@ Each creative can also be opened directly at `/top/top.html`, `/left/left.html`,
 
 ## AI note
 
-Claude was used for planning; all other AI-assisted work was done in GitHub Copilot. One AI-generated pass missed the black areas in the supplied panel and copy images. I kept the assets unchanged and corrected the rendering with `clip-path` for the panel and `mix-blend-mode: screen` for the copy.
+Claude was used for planning; all other AI-assisted work was done in GitHub Copilot and Codex. One AI-generated pass missed the black areas in the supplied panel and copy images. I kept the assets unchanged and corrected the rendering with `clip-path` for the panel and `mix-blend-mode: screen` for the copy.
