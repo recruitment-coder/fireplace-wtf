@@ -6,8 +6,8 @@ const animationTiming = {
 	copyReveal: 0.8,
 	ctaReveal: 0.5,
 	idleCycle: 4.8,
-	stopAfter: 15,
-	stopEase: 0.8,
+	stopAfter: 30,
+	stopEase: 0.8
 };
 
 const clickTag = window.clickTag || 'https://example.com/landing';
@@ -22,11 +22,11 @@ let fallbackTimer;
 adLink.href = clickTag;
 
 const showFinalState = () => {
-	gsap.set(background, { x: 0, y: 0, opacity: 1 });
-	gsap.set(logo, { opacity: 1 });
-	gsap.set(box, { opacity: 0.8 });
-	gsap.set(copy, { opacity: 1, x: 0, y: 0 });
-	gsap.set(cta, { opacity: 1 });
+	gsap.set(background, {x: 0, y: 0, opacity: 1});
+	gsap.set(logo, {opacity: 1});
+	gsap.set(box, {opacity: 0.8});
+	gsap.set(copy, {opacity: 1, x: 0, y: 0});
+	gsap.set(cta, {opacity: 1});
 };
 
 const startAnimation = () => {
@@ -42,67 +42,84 @@ const startAnimation = () => {
 	}
 
 	const startTime = performance.now();
-	const intro = gsap.timeline({ onComplete: startIdle });
+	const intro = gsap.timeline({onComplete: startIdle});
 
 	// The background slides in and slows to a stop. The logo appears during the slide, followed by the text panel, copy, and button.
 	intro.to(background, {
 		x: 0,
 		duration: animationTiming.productSlide,
-		ease: 'power3.out',
+		ease: 'power3.out'
 	});
 
-	intro.to(logo, {
-		opacity: 1,
-		duration: animationTiming.logoReveal,
-		ease: 'power2.out',
-	}, 0.4);
+	intro.to(
+		logo,
+		{
+			opacity: 1,
+			duration: animationTiming.logoReveal,
+			ease: 'power2.out'
+		},
+		0.4
+	);
 
-	intro.to(box, {
-		opacity: 0.8,
-		duration: animationTiming.panelReveal,
-		ease: 'power2.out',
-	}, animationTiming.productSlide);
+	intro.to(
+		box,
+		{
+			opacity: 0.8,
+			duration: animationTiming.panelReveal,
+			ease: 'power2.out'
+		},
+		animationTiming.productSlide
+	);
 
-	intro.to(copy, {
-		opacity: 1,
-		duration: animationTiming.copyReveal,
-		ease: 'power2.out',
-	}, animationTiming.productSlide + animationTiming.panelReveal);
+	intro.to(
+		copy,
+		{
+			opacity: 1,
+			duration: animationTiming.copyReveal,
+			ease: 'power2.out'
+		},
+		animationTiming.productSlide + animationTiming.panelReveal
+	);
 
-	intro.to(cta, {
-		opacity: 1,
-		duration: animationTiming.ctaReveal,
-		ease: 'power2.out',
-	}, animationTiming.intro - animationTiming.ctaReveal);
+	intro.to(
+		cta,
+		{
+			opacity: 1,
+			duration: animationTiming.ctaReveal,
+			ease: 'power2.out'
+		},
+		animationTiming.intro - animationTiming.ctaReveal
+	);
 
 	function startIdle() {
-		const idle = gsap.timeline({ repeat: -1, yoyo: true });
+		const idle = gsap.timeline({repeat: -1, yoyo: true});
 
 		// The button fades slightly, then returns to normal until the animation stops.
-		idle.to(cta, {
-			opacity: 0.94,
-			duration: animationTiming.idleCycle / 4,
-			ease: 'sine.inOut',
-		}, 0);
-
-		gsap.delayedCall(
-			Math.max(0, animationTiming.stopAfter - (performance.now() - startTime) / 1000),
-			() => {
-				idle.kill();
-				gsap.to(cta, {
-					opacity: 1,
-					duration: animationTiming.stopEase,
-					ease: 'power2.out',
-				});
+		idle.to(
+			cta,
+			{
+				opacity: 0.65,
+				duration: animationTiming.idleCycle / 4,
+				ease: 'sine.inOut'
 			},
+			0
 		);
+
+		gsap.delayedCall(Math.max(0, animationTiming.stopAfter - (performance.now() - startTime) / 1000), () => {
+			idle.kill();
+			gsap.to(cta, {
+				opacity: 1,
+				duration: animationTiming.stopEase,
+				ease: 'power2.out'
+			});
+		});
 	}
 };
 
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 	startAnimation();
 } else {
-	window.addEventListener('message', (event) => {
+	window.addEventListener('message', event => {
 		if (window.parent === window || event.source !== window.parent || event.data !== 'start-ad') {
 			return;
 		}
@@ -115,7 +132,7 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		if (document.readyState === 'complete') {
 			startAnimation();
 		} else {
-			window.addEventListener('load', startAnimation, { once: true });
+			window.addEventListener('load', startAnimation, {once: true});
 		}
 	} else {
 		const scheduleFallback = () => {
@@ -127,7 +144,7 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		if (document.readyState === 'complete') {
 			scheduleFallback();
 		} else {
-			window.addEventListener('load', scheduleFallback, { once: true });
+			window.addEventListener('load', scheduleFallback, {once: true});
 		}
 	}
 }
